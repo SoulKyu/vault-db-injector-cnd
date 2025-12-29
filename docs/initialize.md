@@ -47,10 +47,11 @@ Install the Vault instance :
 
 ```bash
 helm repo add hashicorp https://helm.releases.hashicorp.com
+helm repo add openbao https://openbao.github.io/openbao-helm
 helm repo update
 
-helm upgrade --install vault hashicorp/vault \
-  --namespace vault \
+helm upgrade --install openbao openbao/openbao \
+  --namespace openbao \
   --create-namespace \
   --set='server.dev.enabled=true' \
   --set='ui.enabled=true' \
@@ -62,13 +63,13 @@ helm upgrade --install vault hashicorp/vault \
 Verify the Vault Operator is running:
 
 ```bash
-kubectl klock pods -n vault
+kubectl klock pods -n openbao
 ```
 
 ## Unseal Vault
 
 ```bash
-kubectl logs vault-0 -n vault | grep 'Unseal Key:' | awk '{print $NF}' | xargs kubectl exec vault-0 -n vault -- vault operator unseal
+kubectl logs openbao-0 -n openbao | grep 'Unseal Key:' | awk '{print $NF}' | xargs kubectl exec openbao-0 -n openbao -- vault operator unseal
 ```
 
 ## Step 4: Install PostgreSQL
@@ -106,7 +107,7 @@ exit
 ### Deploy vault terraform resources
 
 ```bash
-kubectl port-forward -n vault svc/vault 8200:8200 &
+kubectl port-forward -n openbao svc/openbao 8200:8200 &
 cd ../deploy/terraform/vault
 terraform init
 terraform apply -auto-approve
