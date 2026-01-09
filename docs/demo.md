@@ -10,7 +10,7 @@ Complete demonstration of vault-db-injector usage
 
 ```bash
 kubectl apply -f ../demo/kubernetes/app1.yaml
-kubectl klocks pods -n default
+kubectl klock pods -n default
 ```
 
 ## validate the database access

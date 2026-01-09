@@ -1,7 +1,7 @@
 resource "null_resource" "postgres_setup" {
   provisioner "local-exec" {
     command = <<-EOT
-      PGPASSWORD="${var.postgres_password}" psql \
+      PGPASSWORD="${var.postgres_password}" PGSSLMODE="${var.postgres_sslmode}" psql \
         -h ${var.postgres_host} \
         -p ${var.postgres_port} \
         -U ${var.postgres_user} \
@@ -12,7 +12,7 @@ resource "null_resource" "postgres_setup" {
 
   provisioner "local-exec" {
     command = <<-EOT
-      PGPASSWORD="${var.postgres_password}" psql \
+      PGPASSWORD="${var.postgres_password}" PGSSLMODE="${var.postgres_sslmode}" psql \
         -h ${var.postgres_host} \
         -p ${var.postgres_port} \
         -U ${var.postgres_user} \
@@ -23,7 +23,7 @@ resource "null_resource" "postgres_setup" {
 
   provisioner "local-exec" {
     command = <<-EOT
-      PGPASSWORD="${var.postgres_password}" psql \
+      PGPASSWORD="${var.postgres_password}" PGSSLMODE="${var.postgres_sslmode}" psql \
         -h ${var.postgres_host} \
         -p ${var.postgres_port} \
         -U ${var.postgres_user} \
@@ -34,7 +34,7 @@ resource "null_resource" "postgres_setup" {
 
   provisioner "local-exec" {
     command = <<-EOT
-      PGPASSWORD="${var.postgres_password}" psql \
+      PGPASSWORD="${var.postgres_password}" PGSSLMODE="${var.postgres_sslmode}" psql \
         -h ${var.postgres_host} \
         -p ${var.postgres_port} \
         -U ${var.postgres_user} \
@@ -45,7 +45,7 @@ resource "null_resource" "postgres_setup" {
 
   provisioner "local-exec" {
     command = <<-EOT
-      PGPASSWORD="${var.postgres_password}" psql \
+      PGPASSWORD="${var.postgres_password}" PGSSLMODE="${var.postgres_sslmode}" psql \
         -h ${var.postgres_host} \
         -p ${var.postgres_port} \
         -U ${var.postgres_user} \
@@ -56,7 +56,7 @@ resource "null_resource" "postgres_setup" {
 
   provisioner "local-exec" {
     command = <<-EOT
-      PGPASSWORD="${var.postgres_password}" psql \
+      PGPASSWORD="${var.postgres_password}" PGSSLMODE="${var.postgres_sslmode}" psql \
         -h ${var.postgres_host} \
         -p ${var.postgres_port} \
         -U ${var.postgres_user} \
@@ -67,7 +67,7 @@ resource "null_resource" "postgres_setup" {
 
   provisioner "local-exec" {
     command = <<-EOT
-      PGPASSWORD="${var.postgres_password}" psql \
+      PGPASSWORD="${var.postgres_password}" PGSSLMODE="${var.postgres_sslmode}" psql \
         -h ${var.postgres_host} \
         -p ${var.postgres_port} \
         -U ${var.postgres_user} \
@@ -78,7 +78,7 @@ resource "null_resource" "postgres_setup" {
 
   provisioner "local-exec" {
     command = <<-EOT
-      PGPASSWORD="${var.postgres_password}" psql \
+      PGPASSWORD="${var.postgres_password}" PGSSLMODE="${var.postgres_sslmode}" psql \
         -h ${var.postgres_host} \
         -p ${var.postgres_port} \
         -U ${var.postgres_user} \
@@ -89,7 +89,7 @@ resource "null_resource" "postgres_setup" {
 
   provisioner "local-exec" {
     command = <<-EOT
-      PGPASSWORD="${var.postgres_password}" psql \
+      PGPASSWORD="${var.postgres_password}" PGSSLMODE="${var.postgres_sslmode}" psql \
         -h ${var.postgres_host} \
         -p ${var.postgres_port} \
         -U ${var.postgres_user} \
@@ -100,7 +100,7 @@ resource "null_resource" "postgres_setup" {
 
   provisioner "local-exec" {
     command = <<-EOT
-      PGPASSWORD="${var.postgres_password}" psql \
+      PGPASSWORD="${var.postgres_password}" PGSSLMODE="${var.postgres_sslmode}" psql \
         -h ${var.postgres_host} \
         -p ${var.postgres_port} \
         -U ${var.postgres_user} \
@@ -111,7 +111,7 @@ resource "null_resource" "postgres_setup" {
 
   provisioner "local-exec" {
     command = <<-EOT
-      PGPASSWORD="${var.postgres_password}" psql \
+      PGPASSWORD="${var.postgres_password}" PGSSLMODE="${var.postgres_sslmode}" psql \
         -h ${var.postgres_host} \
         -p ${var.postgres_port} \
         -U ${var.postgres_user} \
@@ -122,7 +122,7 @@ resource "null_resource" "postgres_setup" {
 
   provisioner "local-exec" {
     command = <<-EOT
-      PGPASSWORD="${var.postgres_password}" psql \
+      PGPASSWORD="${var.postgres_password}" PGSSLMODE="${var.postgres_sslmode}" psql \
         -h ${var.postgres_host} \
         -p ${var.postgres_port} \
         -U ${var.postgres_user} \
@@ -133,7 +133,7 @@ resource "null_resource" "postgres_setup" {
 
   provisioner "local-exec" {
     command = <<-EOT
-      PGPASSWORD="${var.postgres_password}" psql \
+      PGPASSWORD="${var.postgres_password}" PGSSLMODE="${var.postgres_sslmode}" psql \
         -h ${var.postgres_host} \
         -p ${var.postgres_port} \
         -U ${var.postgres_user} \
@@ -144,7 +144,7 @@ resource "null_resource" "postgres_setup" {
 
   provisioner "local-exec" {
     command = <<-EOT
-      PGPASSWORD="${var.postgres_password}" psql \
+      PGPASSWORD="${var.postgres_password}" PGSSLMODE="${var.postgres_sslmode}" psql \
         -h ${var.postgres_host} \
         -p ${var.postgres_port} \
         -U ${var.postgres_user} \
@@ -155,7 +155,7 @@ resource "null_resource" "postgres_setup" {
 
   provisioner "local-exec" {
     command = <<-EOT
-      PGPASSWORD="${var.postgres_password}" psql \
+      PGPASSWORD="${var.postgres_password}" PGSSLMODE="${var.postgres_sslmode}" psql \
         -h ${var.postgres_host} \
         -p ${var.postgres_port} \
         -U ${var.postgres_user} \

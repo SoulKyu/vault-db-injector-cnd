@@ -31,7 +31,7 @@ k3d --version
 Create a new k3d cluster named `vault-db-test`:
 
 ```bash
-K3D_FIX_DNS=0 k3d cluster create vault-db-test --servers 3 --agents 1 --image rancher/k3s:v1.34.1-k3s1
+K3D_FIX_DNS=0 k3d cluster create vault-db-test --servers 3 --agents 1 --image rancher/k3s:v1.34.3-k3s1
 ```
 
 Verify the cluster is running:
@@ -72,17 +72,19 @@ kubectl klock pods -n openbao
 kubectl logs openbao-0 -n openbao | grep 'Unseal Key:' | awk '{print $NF}' | xargs kubectl exec openbao-0 -n openbao -- vault operator unseal
 ```
 
-## Step 4: Install PostgreSQL
+## Step 4: Install PostgreSQL (CloudNativePG)
 
-Create the `postgres` namespace and install PostgreSQL:
+Install the CloudNativePG operator and create a PostgreSQL cluster:
 
 ```bash {"terminalRows":"11"}
-helm upgrade --install postgres oci://registry-1.docker.io/bitnamicharts/postgresql \
+helm upgrade --install cnpg cloudnative-pg \
+  --repo https://cloudnative-pg.github.io/charts \
+  --namespace cnpg-system \
   --create-namespace \
-  --namespace postgres \
-  --set auth.password=postgres-password \
-  --set primary.persistence.enabled=false \
-  --set replica.persistence.enabled=false
+  --wait
+kubectl apply -f ../demo/kubernetes/namespace.yaml
+sleep 5
+kubectl apply -f ../demo/kubernetes/cluster.yaml -f ../demo/kubernetes/secret.yaml
 ```
 
 Verify PostgreSQL is running:
@@ -96,7 +98,7 @@ kubectl klock pods -n postgres
 ### Deploy postgres resources
 
 ```bash
-kubectl port-forward -n postgres svc/postgres-postgresql 55432:5432 &
+kubectl port-forward -n postgres postgres-1 55432:5432 &
 cd ../deploy/terraform/postgres
 terraform init
 terraform apply -auto-approve

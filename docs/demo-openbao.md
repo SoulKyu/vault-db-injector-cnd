@@ -12,7 +12,7 @@ Ensure port-forwards are active:
 
 ```bash {"background":"true","name":"port-forwards"}
 kubectl port-forward -n vault svc/vault 8200:8200 &
-kubectl port-forward -n postgres svc/postgres-postgresql 55432:5432 &
+kubectl port-forward -n postgres postgres-1 55432:5432 &
 ```
 
 ## Setup Environment

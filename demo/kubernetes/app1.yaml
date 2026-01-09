@@ -4,34 +4,42 @@ metadata:
   name: app1
   namespace: default
 ---
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  annotations:
-    db-creds-injector.numberly.io/app1.env-key-uri: POSTGRES_URL
-    db-creds-injector.numberly.io/app1.template: postgresql://@postgres-postgresql.postgres.svc.cluster.local:5432/app1
-    db-creds-injector.numberly.io/app1.mode: uri
-    db-creds-injector.numberly.io/app1.role: app1
-  labels:
-    vault-db-injector: "true"
   name: app1
   namespace: default
 spec:
-  containers:
-  - image: postgres:15.5
-    command: ["/bin/bash", "-c"]
-    args: ["sleep 3000000"]
-    name: app1
-    resources: {}
-    securityContext:
-      allowPrivilegeEscalation: false
-      capabilities:
-        drop:
-        - ALL
-      readOnlyRootFilesystem: true
-      runAsNonRoot: true
-      runAsUser: 65534
-  dnsPolicy: ClusterFirst
-  restartPolicy: Always
-  serviceAccount: app1
-  serviceAccountName: app1
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app1
+  template:
+    metadata:
+      annotations:
+        db-creds-injector.numberly.io/app1.env-key-uri: POSTGRES_URL
+        db-creds-injector.numberly.io/app1.template: postgresql://@postgres-rw.postgres.svc.cluster.local:5432/app1
+        db-creds-injector.numberly.io/app1.mode: uri
+        db-creds-injector.numberly.io/app1.role: app1
+      labels:
+        app: app1
+        vault-db-injector: "true"
+    spec:
+      containers:
+      - image: postgres:15.5
+        command: ["/bin/bash", "-c"]
+        args: ["sleep 3000000"]
+        name: app1
+        resources: {}
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          runAsUser: 65534
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      serviceAccount: app1
+      serviceAccountName: app1

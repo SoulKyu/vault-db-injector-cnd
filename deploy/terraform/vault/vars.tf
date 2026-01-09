@@ -13,7 +13,7 @@ variable "vault_token" {
 variable "postgres_host" {
   description = "PostgreSQL hostname"
   type        = string
-  default     = "postgres-postgresql.postgres.svc.cluster.local"
+  default     = "postgres-rw.postgres.svc.cluster.local"
 }
 
 variable "postgres_port" {
