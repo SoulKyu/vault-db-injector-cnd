@@ -43,3 +43,4 @@ spec:
       restartPolicy: Always
       serviceAccount: app1
       serviceAccountName: app1
+      terminationGracePeriodSeconds: 0
